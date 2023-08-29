@@ -1,0 +1,16 @@
+* using log directory ‘/home/loki/Documents/core/software/fresh/R/labeling/labeling_git_repo/cran_package/labeling.Rcheck/labeling.Rcheck’
+* using R version 3.6.3 (2020-02-29)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘labeling/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘labeling’ version ‘0.4.3’
+* checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
+Maintainer: ‘Nuno Sempere <nuno.semperelh@gmail.com>’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... ERROR
+Only *source* packages can be checked.
+* DONE
+Status: 1 ERROR

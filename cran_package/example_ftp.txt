@@ -1,0 +1,43 @@
+CRAN asks you to check that the build works on windows. To do so, they provide a server.
+
+---
+
+trastos@trastos:~/workspace/R-labeling$ ftp
+ftp> passive
+Passive mode: off; fallback to active mode: off.
+ftp> passive
+Passive mode: on; fallback to active mode: on.
+ftp> open win-builder.r-project.org
+Connected to win-builder.r-project.org.
+220-Microsoft FTP Service
+220 Welcome on win-builder.R-project.org
+Name (win-builder.r-project.org:trastos): anonymous
+331 Anonymous access allowed, send identity (e-mail name) as password.
+Password:
+230-Before uploading source packages to R-release, R-devel please read
+    https://win-builder.R-project.org/index.htm
+230 User logged in.
+Remote system type is Windows_NT.
+ftp>
+ftp> cd R-devel
+250 CWD command successful.
+ftp> binary
+200 Type set to I.
+ftp> put labeling_0.4.3.tar.gz
+local: labeling_0.4.3.tar.gz remote: labeling_0.4.3.tar.gz
+229 Entering Extended Passive Mode (|||50216|)
+125 Data connection already open; Transfer starting.
+100% |*************|  9895      115.08 MiB/s    00:00 ETA
+226 Transfer complete.
+9895 bytes sent in 00:00 (1.05 MiB/s)
+ftp> ls
+229 Entering Extended Passive Mode (|||50217|)
+125 Data connection already open; Transfer starting.
+08-29-23  11:35PM                 9895 labeling_0.4.3.tar.gz
+226 Transfer complete.
+ftp> bye
+221 Goodbye from win-builder.R-project.org
+
+---
+
+after this, they will send an email with results.
