@@ -1,0 +1,2 @@
+https://cranlogs.r-pkg.org/downloads/total/2020-01-01:2100-01-31/labeling
+https://cranlogs.r-pkg.org/downloads/total/last-month/labeling
