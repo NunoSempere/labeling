@@ -1,0 +1,515 @@
+\nonstopmode{}
+\documentclass[letterpaper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8,latin1]{inputenc}
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `labeling'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Axis Labeling}
+\item[Version]\AsIs{0.4.3}
+\item[Date]\AsIs{2023-08-29}
+\item[Author]\AsIs{Justin Talbot,}
+\item[Maintainer]\AsIs{Nuno Sempere }\email{nuno.semperelh@gmail.com}\AsIs{}
+\item[Description]\AsIs{Functions which provide a range of axis labeling algorithms.}
+\item[License]\AsIs{MIT + file LICENSE | Unlimited}
+\item[Collate]\AsIs{'labeling.R'}
+\item[NeedsCompilation]\AsIs{no}
+\item[Imports]\AsIs{stats, graphics}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{labeling-package}{Axis labeling}{labeling.Rdash.package}
+\aliasA{labeling}{labeling-package}{labeling}
+\keyword{dplot}{labeling-package}
+%
+\begin{Description}\relax
+Functions for positioning tick labels on axes
+\end{Description}
+%
+\begin{Details}\relax
+
+\Tabular{ll}{ Package: & labeling\\{} Type: &
+Package\\{} Version: & 0.4.3\\{} Date: & 2023-08-29\\{}
+License: & Unlimited\\{} LazyLoad: & yes\\{} }
+
+Implements a number of axis labeling schemes, including
+those compared in An Extension of Wilkinson's Algorithm
+for Positioning Tick Labels on Axes by Talbot, Lin, and
+Hanrahan, InfoVis 2010.
+\end{Details}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Heckbert, P. S. (1990) Nice numbers for graph labels,
+Graphics Gems I, Academic Press Professional, Inc.
+Wilkinson, L. (2005) The Grammar of Graphics,
+Springer-Verlag New York, Inc. Talbot, J., Lin, S.,
+Hanrahan, P. (2010) An Extension of Wilkinson's Algorithm
+for Positioning Tick Labels on Axes, InfoVis 2010.
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{extended}{extended}}, \code{\LinkA{wilkinson}{wilkinson}},
+\code{\LinkA{heckbert}{heckbert}}, \code{\LinkA{rpretty}{rpretty}},
+\code{\LinkA{gnuplot}{gnuplot}}, \code{\LinkA{matplotlib}{matplotlib}},
+\code{\LinkA{nelder}{nelder}}, \code{\LinkA{sparks}{sparks}},
+\code{\LinkA{thayer}{thayer}}, \code{\LinkA{pretty}{pretty}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+heckbert(8.1, 14.1, 4)	# 5 10 15
+wilkinson(8.1, 14.1, 4)	# 8 9 10 11 12 13 14 15
+extended(8.1, 14.1, 4)	# 8 10 12 14
+# When plotting, extend the plot range to include the labeling
+# Should probably have a helper function to make this easier
+data(iris)
+x <- iris$Sepal.Width
+y <- iris$Sepal.Length
+xl <- extended(min(x), max(x), 6)
+yl <- extended(min(y), max(y), 6)
+plot(x, y,
+    xlim=c(min(x,xl),max(x,xl)),
+    ylim=c(min(y,yl),max(y,yl)),
+    axes=FALSE, main="Extended labeling")
+axis(1, at=xl)
+axis(2, at=yl)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{extended}{An Extension of Wilkinson's Algorithm for Position Tick Labels on Axes}{extended}
+%
+\begin{Description}\relax
+\code{extended} is an enhanced version of Wilkinson's
+optimization-based axis labeling approach. It is
+described in detail in our paper. See the references.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  extended(dmin, dmax, m, Q = c(1, 5, 2, 2.5, 4, 3),
+    only.loose = FALSE, w = c(0.25, 0.2, 0.5, 0.05))
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+
+\item[\code{Q}] set of nice numbers
+
+\item[\code{only.loose}] if true, the extreme labels will be
+outside the data range
+
+\item[\code{w}] weights applied to the four optimization
+components (simplicity, coverage, density, and
+legibility)
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of
+Wilkinson's Algorithm for Positioning Tick Labels on
+Axes, InfoVis 2010.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{extended.figures}{Generate figures from An Extension of Wilkinson's Algorithm for Position Tick Labels on Axes}{extended.figures}
+%
+\begin{Description}\relax
+Generates Figures 2 and 3 from our paper.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  extended.figures(samples = 100)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{samples}] number of samples to use (in the paper we
+used 10000, but that takes awhile to run).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+produces plots as a side effect
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Talbot, J., Lin, S., Hanrahan, P. (2010) An Extension of
+Wilkinson's Algorithm for Positioning Tick Labels on
+Axes, InfoVis 2010.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{gnuplot}{gnuplot's labeling algorithm}{gnuplot}
+%
+\begin{Description}\relax
+gnuplot's labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  gnuplot(dmin, dmax, m)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+\url{http://www.gnuplot.info/}
+\end{References}
+\inputencoding{utf8}
+\HeaderA{heckbert}{Heckbert's labeling algorithm}{heckbert}
+%
+\begin{Description}\relax
+Heckbert's labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  heckbert(dmin, dmax, m)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Heckbert, P. S. (1990) Nice numbers for graph labels,
+Graphics Gems I, Academic Press Professional, Inc.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{matplotlib}{Matplotlib's labeling algorithm}{matplotlib}
+%
+\begin{Description}\relax
+Matplotlib's labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  matplotlib(dmin, dmax, m)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+\url{https://matplotlib.org/}
+\end{References}
+\inputencoding{utf8}
+\HeaderA{nelder}{Nelder's labeling algorithm}{nelder}
+%
+\begin{Description}\relax
+Nelder's labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  nelder(dmin, dmax, m,
+    Q = c(1, 1.2, 1.6, 2, 2.5, 3, 4, 5, 6, 8, 10))
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+
+\item[\code{Q}] set of nice numbers
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Nelder, J. A. (1976) AS 96. A Simple Algorithm for
+Scaling Graphs, Journal of the Royal Statistical Society.
+Series C., pp. 94-96.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{rpretty}{R's pretty algorithm implemented in R}{rpretty}
+%
+\begin{Description}\relax
+R's pretty algorithm implemented in R
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  rpretty(dmin, dmax, m = 6, n = floor(m) - 1,
+    min.n = n%/%3, shrink.sml = 0.75, high.u.bias = 1.5,
+    u5.bias = 0.5 + 1.5 * high.u.bias)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+
+\item[\code{n}] number of axis intervals (specify one of
+\code{m} or \code{n})
+
+\item[\code{min.n}] nonnegative integer giving the
+\emph{minimal} number of intervals. If \code{min.n == 0},
+\code{pretty(.)} may return a single value.
+
+\item[\code{shrink.sml}] positive numeric by a which a default
+scale is shrunk in the case when \code{range(x)} is very
+small (usually 0).
+
+\item[\code{high.u.bias}] non-negative numeric, typically
+\code{> 1}. The interval unit is determined as
+\code{\{1,2,5,10\}} times \code{b}, a power of 10. Larger
+\code{high.u.bias} values favor larger units.
+
+\item[\code{u5.bias}] non-negative numeric multiplier favoring
+factor 5 over 2. Default and 'optimal': \code{u5.bias =
+  .5 + 1.5*high.u.bias}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+\emph{The New S Language}. Wadsworth \& Brooks/Cole.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{sparks}{Sparks' labeling algorithm}{sparks}
+%
+\begin{Description}\relax
+Sparks' labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  sparks(dmin, dmax, m)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Sparks, D. N. (1971) AS 44. Scatter Diagram Plotting,
+Journal of the Royal Statistical Society. Series C., pp.
+327-331.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{thayer}{Thayer and Storer's labeling algorithm}{thayer}
+%
+\begin{Description}\relax
+Thayer and Storer's labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  thayer(dmin, dmax, m)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Thayer, R. P. and Storer, R. F. (1969) AS 21. Scale
+Selection for Computer Plots, Journal of the Royal
+Statistical Society. Series C., pp. 206-208.
+\end{References}
+\inputencoding{utf8}
+\HeaderA{wilkinson}{Wilkinson's labeling algorithm}{wilkinson}
+%
+\begin{Description}\relax
+Wilkinson's labeling algorithm
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+  wilkinson(dmin, dmax, m,
+    Q = c(1, 5, 2, 2.5, 3, 4, 1.5, 7, 6, 8, 9),
+    mincoverage = 0.8,
+    mrange = max(floor(m/2), 2):ceiling(6 * m))
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dmin}] minimum of the data range
+
+\item[\code{dmax}] maximum of the data range
+
+\item[\code{m}] number of axis labels
+
+\item[\code{Q}] set of nice numbers
+
+\item[\code{mincoverage}] minimum ratio between the the data
+range and the labeling range, controlling the whitespace
+around the labeling (default = 0.8)
+
+\item[\code{mrange}] range of \code{m}, the number of tick
+marks, that should be considered in the optimization
+search
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+vector of axis label locations
+\end{Value}
+%
+\begin{Note}\relax
+Ported from Wilkinson's Java implementation with some
+changes.  Changes: 1) m (the target number of ticks) is
+hard coded in Wilkinson's implementation as 5.  Here we
+allow it to vary as a parameter. Since m is fixed,
+Wilkinson only searches over a fixed range 4-13 of
+possible resulting ticks.  We broadened the search range
+to max(floor(m/2),2) to ceiling(6*m), which is a larger
+range than Wilkinson considers for 5 and allows us to
+vary m, including using non-integer values of m.  2)
+Wilkinson's implementation assumes that the scores are
+non-negative. But, his revised granularity function can
+be extremely negative. We tweaked the code to allow
+negative scores.  We found that this produced better
+labelings.  3) We added 10 to Q. This seemed to be
+necessary to get steps of size 1.  It is possible for
+this algorithm to find no solution.  In Wilkinson's
+implementation, instead of failing, he returns the
+non-nice labels spaced evenly from min to max.  We want
+to detect this case, so we return NULL. If this happens,
+the search range, mrange, needs to be increased.
+\end{Note}
+%
+\begin{Author}\relax
+Justin Talbot \email{justintalbot@gmail.com}
+\end{Author}
+%
+\begin{References}\relax
+Wilkinson, L. (2005) The Grammar of Graphics,
+Springer-Verlag New York, Inc.
+\end{References}
+\printindex{}
+\end{document}

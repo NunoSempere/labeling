@@ -1,0 +1,76 @@
+
+R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "labeling"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('labeling')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("labeling-package")
+> ### * labeling-package
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: labeling-package
+> ### Title: Axis labeling
+> ### Aliases: labeling labeling-package
+> ### Keywords: dplot
+> 
+> ### ** Examples
+> 
+> heckbert(8.1, 14.1, 4)	# 5 10 15
+[1]  5 10 15
+> wilkinson(8.1, 14.1, 4)	# 8 9 10 11 12 13 14 15
+[1]  8  9 10 11 12 13 14 15
+> extended(8.1, 14.1, 4)	# 8 10 12 14
+[1]  8 10 12 14
+> # When plotting, extend the plot range to include the labeling
+> # Should probably have a helper function to make this easier
+> data(iris)
+> x <- iris$Sepal.Width
+> y <- iris$Sepal.Length
+> xl <- extended(min(x), max(x), 6)
+> yl <- extended(min(y), max(y), 6)
+> plot(x, y,
++     xlim=c(min(x,xl),max(x,xl)),
++     ylim=c(min(y,yl),max(y,yl)),
++     axes=FALSE, main="Extended labeling")
+> axis(1, at=xl)
+> axis(2, at=yl)
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.067 0.004 0.071 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

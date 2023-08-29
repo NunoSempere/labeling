@@ -8,7 +8,7 @@
 }
 \details{
   \tabular{ll}{ Package: \tab labeling\cr Type: \tab
-  Package\cr Version: \tab 0.2\cr Date: \tab 2011-04-01\cr
+  Package\cr Version: \tab 0.4.3\cr Date: \tab 2023-08-29\cr
   License: \tab Unlimited\cr LazyLoad: \tab yes\cr }
 
   Implements a number of axis labeling schemes, including
