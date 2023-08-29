@@ -10,4 +10,4 @@ License: MIT + file LICENSE | Unlimited
 Collate: 'labeling.R'
 NeedsCompilation: no
 Imports: stats, graphics
-Packaged: 2023-08-29 20:54:26 UTC; loki
+Packaged: 2023-08-29 21:01:57 UTC; loki

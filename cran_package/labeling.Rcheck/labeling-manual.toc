@@ -1,0 +1,11 @@
+\contentsline {subsection}{labeling-package}{1}{page.1}
+\contentsline {subsection}{extended}{2}{page.2}
+\contentsline {subsection}{extended.figures}{3}{page.3}
+\contentsline {subsection}{gnuplot}{4}{page.4}
+\contentsline {subsection}{heckbert}{4}{page.4}
+\contentsline {subsection}{matplotlib}{5}{page.5}
+\contentsline {subsection}{nelder}{6}{page.6}
+\contentsline {subsection}{rpretty}{6}{page.6}
+\contentsline {subsection}{sparks}{7}{page.7}
+\contentsline {subsection}{thayer}{8}{page.8}
+\contentsline {subsection}{wilkinson}{9}{page.9}
